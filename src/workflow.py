@@ -113,7 +113,7 @@ def run_workflow(config: dict):
             uc=target_geometry["uc"],
             hop=H_mapped,
             # size=analyzer_target.size,
-            contains_cc=True,
+            contains_cc=False,
         )
         logging.info("Mapped TB-model constructed successfully.")
         
