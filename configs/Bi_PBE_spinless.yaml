@@ -2,13 +2,11 @@
 source_structure_file: "./data/input/Bi/PBE/spinless/POSCAR"
 source_hr_file: "./data/input/Bi/PBE/spinless/wannier90_hr.dat"
 source_win_file: "./data/input/Bi/PBE/spinless/wannier90.win" 
-# source_projection:
-#   Bi: ["s", "pz", "px", "py"]
 
 # --- ターゲット構造情報 ---
 target_structure_file: null
 target_projection: null
-output_hr_file: "./data/output/mapped_hr.dat"
+output_hr_file: "./data/output/Bi/PBE/spinless/mapped_hr.dat"
 
 # --- 一般設定 ---
 spin: false
@@ -17,22 +15,12 @@ fermi_energy: 2.9478
 # --- 解析オプション ---
 distance_threshold: 1.0e-9
 zero_hop_threshold: 1.0e-9
-hopping_cutoff_distance: 7.0
-use_hermitian_symmetrization: true
-use_symmetry_averaging: true
+hopping_cutoff_distance: 7.5
+use_hermitian_symmetrization: false
+use_symmetry_averaging: false
 fit_type: "linear" # "exp", "gaussian", "linear"
 
 # --- 検証オプション ---
 run_plotting: true
 run_validation: true
 compare_parameters: false
-# k_path:
-  # G-L : [[0.0000, 0.0000, 0.0000], [0.5000, 0.0000, 0.0000]]
-  # L-B1: [[0.5000, 0.0000, 0.0000], [0.5000, 0.2373,-0.2373]]
-  # B-Z : [[0.7627, 0.5000, 0.2373], [0.5000, 0.5000, 0.5000]]
-  # Z-G : [[0.5000, 0.5000, 0.5000], [0.0000, 0.0000, 0.0000]]
-  # G-X : [[0.0000, 0.0000, 0.0000], [0.3687, 0.0000,-0.3687]]
-  # Q-F : [[0.6313, 0.3687, 0.0000], [0.5000, 0.5000, 0.0000]]
-  # F-P1: [[0.5000, 0.5000, 0.0000], [0.6313, 0.6313, 0.2373]]
-  # P1-Z: [[0.6313, 0.6313, 0.2373], [0.5000, 0.5000, 0.5000]]
-  # L-P : [[0.5000, 0.0000, 0.0000], [0.7627, 0.3687, 0.3687]]
