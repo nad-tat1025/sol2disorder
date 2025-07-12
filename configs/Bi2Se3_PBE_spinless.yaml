@@ -1,0 +1,26 @@
+# --- ソースモデル情報 ---
+source_structure_file: "./data/input/Bi2Se3/spinless/POSCAR"
+source_hr_file: "./data/input/Bi2Se3/spinless/wannier90_hr.dat"
+source_win_file: "./data/input/Bi2Se3/spinless/wannier90.win" 
+
+# --- ターゲット構造情報 ---
+target_structure_file: null
+target_projection: null
+output_hr_file: "./data/output/mapped_hr.dat"
+
+# --- 一般設定 ---
+spin: false
+fermi_energy: 3.6084
+
+# --- 解析オプション ---
+distance_threshold: 1.0e-9
+zero_hop_threshold: 1.0e-9
+hopping_cutoff_distance: 7.0
+use_hermitian_symmetrization: true
+use_symmetry_averaging: true
+fit_type: "linear" # "exp", "gaussian", "linear"
+
+# --- 検証オプション ---
+run_plotting: true
+run_validation: true
+compare_parameters: false
