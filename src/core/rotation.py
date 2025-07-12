@@ -56,7 +56,7 @@ class RotationManager:
         elif np.isclose(np.dot(n_normalized, [0, 0, 1]), -1.0):
             return 0.0, np.pi, 0.0
         
-        rot, _ = Rotation.align_vectors([[0, 0, 1]], [n_normalized])
+        rot, _ = Rotation.align_vectors([n_normalized], [[0, 0, 1]])
         return rot.as_euler('ZYZ', degrees=False)
 
     @staticmethod
