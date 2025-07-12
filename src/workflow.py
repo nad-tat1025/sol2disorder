@@ -65,7 +65,7 @@ def run_workflow(config: dict):
         onsite_key = (0, 0, 0)
         if onsite_key in source_model.hop:
             h_onsite = source_model.hop[onsite_key]
-            h_onsite -= fermi_energy * np.eye(h_onsite.shape[0], dtype=complex)
+            h_onsite -= fermi_energy / 2 * np.eye(h_onsite.shape[0], dtype=complex) # NOTE: TBmodelsの実装上, 半分にする (原因不明)
             logging.info("On-site energies have been shifted successfully.")
         else:
             logging.warning("On-site Hamiltonian H(R=0) not found. Cannot shift by Fermi energy.")
@@ -113,7 +113,7 @@ def run_workflow(config: dict):
             uc=target_geometry["uc"],
             hop=H_mapped,
             # size=analyzer_target.size,
-            contains_cc=False,
+            contains_cc=True,
         )
         logging.info("Mapped TB-model constructed successfully.")
         
