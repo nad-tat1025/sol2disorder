@@ -46,7 +46,6 @@ class HoppingAnalyzer:
             spin_multiplier = 2 if self.config.get('spin', False) else 1
             self.size = num_orbitals * spin_multiplier
 
-
     def _get_site_info(self) -> Dict[str, Dict[int, Any]]:
         """サイトごとの基底指数、軌道ラベル、軌道タイプをマッピングした辞書を生成する。"""
         info: Dict[str, Dict[int, Any]] = {
@@ -123,6 +122,29 @@ class HoppingAnalyzer:
             processed_R.add(minus_R_tuple)
             
         return symm_hop
+
+    # def _symmetrize_hoppings(self) -> Dict[BravaisVector, np.ndarray]: # TEST
+    #     """
+    #     ハミルトニアンのエルミート対称性を保証する。
+    #     -Rベクトルが存在しない場合のみ、H(-R) = H(R)† として補完する。
+    #     既存のデータは変更しない。
+    #     """
+    #     # 元のホッピング辞書のコピーから始める
+    #     symm_hop = self.model.hop.copy()
+        
+    #     # model.hop.keys()をリストに変換してイテレートし、辞書への追加によるエラーを防ぐ
+    #     for R_tuple in list(self.model.hop.keys()):
+    #         minus_R_tuple = tuple(-r for r in R_tuple)
+            
+    #         # -Rに対応するホッピングが辞書に存在しない場合のみ処理
+    #         if minus_R_tuple not in symm_hop:
+    #             # H(R)を取得
+    #             H_R = symm_hop[R_tuple]
+    #             # H(-R) = H(R)† として新しいエントリを追加
+    #             symm_hop[minus_R_tuple] = H_R.T.conj()
+    #             logging.debug(f"Symmetrizing: Added H({minus_R_tuple}) from H({R_tuple})†")
+
+    #     return symm_hop
 
     def extract_and_rotate_hoppings(self) -> Dict[str, HoppingData]:
         """ホッピングを抽出し、サイト間ベクトルに沿って回転させ、局所座標系に変換する。"""

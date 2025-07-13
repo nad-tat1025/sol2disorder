@@ -15,12 +15,15 @@ fermi_energy: 2.9478
 # --- 解析オプション ---
 distance_threshold: 1.0e-9
 zero_hop_threshold: 1.0e-9
-hopping_cutoff_distance: 7.5
-use_hermitian_symmetrization: false
+hopping_cutoff_distance: 6.5
+use_hermitian_symmetrization: true
 use_symmetry_averaging: false
 fit_type: "linear" # "exp", "gaussian", "linear"
 
 # --- 検証オプション ---
 run_plotting: true
 run_validation: true
-compare_parameters: false
+compare_parameters: true
+
+# --- デバッグ用オプション
+use_ungrouped_interpolation: true

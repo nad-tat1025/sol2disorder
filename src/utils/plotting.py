@@ -205,3 +205,127 @@ def plot_hopping_with_fit(hopping_by_type: HoppingDict, interpolated_functions: 
 
     plt.tight_layout()
     plt.show()
+
+
+def plot_hopping_comparison(original_hoppings: HoppingDict, 
+                            mapped_hoppings: HoppingDict, 
+                            interpolated_functions: Dict,
+                            config: dict):
+    """
+    マッピング前後のホッピングパラメータと補間関数をグラフで比較する。
+    """
+    logging.info("--- Plotting Hopping Parameter Comparison (Original vs. Mapped) ---")
+    
+    all_keys = sorted(list(set(original_hoppings.keys()) | set(mapped_hoppings.keys())), key=str)
+    keys_to_plot = [k for k in all_keys if original_hoppings.get(k) or mapped_hoppings.get(k)]
+    n_plots = len(keys_to_plot)
+
+    if n_plots == 0:
+        logging.info("No data to plot for comparison.")
+        return
+
+    ncols = int(ceil(sqrt(n_plots)))
+    nrows = int(ceil(n_plots / ncols))
+    
+    figsize = (4.0 * ncols, 3.0 * nrows)
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, sharex=True, sharey=True)
+    axes = np.atleast_1d(axes).flatten()
+
+    for ax, key in zip(axes, keys_to_plot):
+        # 1. 元のホッピングデータをプロット
+        if key in original_hoppings:
+            dist_orig = np.array([d for d, _ in original_hoppings[key]])
+            vals_orig = np.array([v for _, v in original_hoppings[key]])
+            ax.scatter(dist_orig, vals_orig.real, color='blue', s=20, label='Original (real)', alpha=0.6)
+            if not np.allclose(vals_orig.imag, 0):
+                ax.scatter(dist_orig, vals_orig.imag, color='cyan', s=20, marker='x', label='Original (imag)', alpha=0.6)
+
+        # 2. マッピング後のホッピングデータをプロット
+        if key in mapped_hoppings:
+            dist_mapped = np.array([d for d, _ in mapped_hoppings[key]])
+            vals_mapped = np.array([v for _, v in mapped_hoppings[key]])
+            ax.scatter(dist_mapped, vals_mapped.real, color='red', s=10, facecolors='none', label='Mapped (real)')
+            if not np.allclose(vals_mapped.imag, 0):
+                ax.scatter(dist_mapped, vals_mapped.imag, color='magenta', s=10, marker='x', label='Mapped (imag)')
+        
+        # 3. 補間関数をプロット
+        fit_func = interpolated_functions.get(key)
+        if fit_func:
+            d_fit = np.linspace(0, config.get("hopping_cutoff_distance", 10.0), 300)
+            t_fit = fit_func(d_fit)
+            ax.plot(d_fit, t_fit.real, color='black', linestyle='--', label='Fit/Interpolation (real)')
+            if not np.allclose(t_fit.imag, 0):
+                ax.plot(d_fit, t_fit.imag, color='gray', linestyle=':', label='Fit/Interpolation (imag)')
+
+        title_str = f"{''.join(key[0])} -> {''.join(key[1])}"
+        ax.set_title(title_str, fontsize=10)
+        ax.set_xlabel("Distance [Å]")
+        ax.set_ylabel("t [eV]")
+        ax.legend(fontsize=8)
+        ax.axhline(0, color='gray', linestyle='--', linewidth=0.5)
+        ax.set_xlim(0, config.get("hopping_cutoff_distance", 10.0))
+
+    for ax_idx in range(n_plots, len(axes)):
+        axes[ax_idx].axis("off")
+
+    plt.tight_layout()
+    plt.show()
+    
+def plot_ungrouped_hopping_with_fit(hopping_dict: Dict[str, HoppingData], 
+                                    interpolated_functions: Dict[str, Callable],
+                                    config: dict):
+    """
+    [テスト用] グループ化されていない生のホッピングデータと、
+    それに対応する補間関数をプロットする。
+    """
+    logging.info("--- Plotting Ungrouped Hopping Data with Fit/Interpolation ---")
+    
+    keys_to_plot = [k for k, v in hopping_dict.items() if v]
+    n_plots = len(keys_to_plot)
+
+    if n_plots == 0:
+        logging.info("No ungrouped data to plot.")
+        return
+
+    # プロット数が非常に多くなる可能性があるため、一部を抜粋するか、警告を出す
+    MAX_PLOTS = 36 # プロットするグラフの最大数
+    if n_plots > MAX_PLOTS:
+        logging.warning(f"Too many hopping pairs to plot ({n_plots}). Plotting the first {MAX_PLOTS}.")
+        keys_to_plot = keys_to_plot[:MAX_PLOTS]
+        n_plots = MAX_PLOTS
+
+    ncols = int(ceil(sqrt(n_plots)))
+    nrows = int(ceil(n_plots / ncols))
+    
+    figsize = (4.0 * ncols, 3.0 * nrows)
+    fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, sharex=True, sharey=True)
+    axes = np.atleast_1d(axes).flatten()
+
+    for ax, key in zip(axes, keys_to_plot):
+        distances = np.array([d for d, _ in hopping_dict[key]])
+        values = np.array([v for _, v in hopping_dict[key]])
+
+        ax.scatter(distances, values.real, color='blue', s=10, label='data (real)')
+        if not np.allclose(values.imag, 0):
+            ax.scatter(distances, values.imag, color='orange', s=10, marker='x', label='data (imag)')
+
+        fit_func = interpolated_functions.get(key)
+        if fit_func:
+            d_fit = np.linspace(0, config.get("hopping_cutoff_distance", 10.0), 300)
+            t_fit = fit_func(d_fit)
+            ax.plot(d_fit, t_fit.real, color='red', linestyle='--', label='fit (real)')
+            if not np.allclose(t_fit.imag, 0):
+                ax.plot(d_fit, t_fit.imag, color='green', linestyle=':', label='fit (imag)')
+
+        ax.set_title(key, fontsize=8) # タイトルに生のキーをそのまま使用
+        ax.set_xlabel("Distance [Å]")
+        ax.set_ylabel("t [eV]")
+        ax.legend(fontsize=8)
+        ax.axhline(0, color='gray', linestyle='--', linewidth=0.5)
+        ax.set_xlim(0, config.get("hopping_cutoff_distance", 10.0))
+
+    for ax_idx in range(n_plots, len(axes)):
+        axes[ax_idx].axis("off")
+
+    plt.tight_layout()
+    plt.show()

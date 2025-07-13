@@ -1,0 +1,1795 @@
+
+             +---------------------------------------------------+
+             |                                                   |
+             |                   WANNIER90                       |
+             |                                                   |
+             +---------------------------------------------------+
+             |                                                   |
+             |        Welcome to the Maximally-Localized         |
+             |        Generalized Wannier Functions code         |
+             |            http://www.wannier.org                 |
+             |                                                   |
+             |                                                   |
+             |  Wannier90 Developer Group:                       |
+             |    Giovanni Pizzi    (EPFL)                       |
+             |    Valerio Vitale    (Cambridge)                  |
+             |    David Vanderbilt  (Rutgers University)         |
+             |    Nicola Marzari    (EPFL)                       |
+             |    Ivo Souza         (Universidad del Pais Vasco) |
+             |    Arash A. Mostofi  (Imperial College London)    |
+             |    Jonathan R. Yates (University of Oxford)       |
+             |                                                   |
+             |  For the full list of Wannier90 3.x authors,      |
+             |  please check the code documentation and the      |
+             |  README on the GitHub page of the code            |
+             |                                                   |
+             |                                                   |
+             |  Please cite                                      |
+             |                                                   |
+             |  [ref] "Wannier90 as a community code:            |
+             |        new features and applications",            |
+             |        G. Pizzi et al., J. Phys. Cond. Matt. 32,  |
+             |        165902 (2020).                             |
+             |        http://doi.org/10.1088/1361-648X/ab51ff    |
+             |                                                   |
+             |  in any publications arising from the use of      |
+             |  this code. For the method please cite            |
+             |                                                   |
+             |  [ref] "Maximally Localized Generalised Wannier   |
+             |         Functions for Composite Energy Bands"     |
+             |         N. Marzari and D. Vanderbilt              |
+             |         Phys. Rev. B 56 12847 (1997)              |
+             |                                                   |
+             |  [ref] "Maximally Localized Wannier Functions     |
+             |         for Entangled Energy Bands"               |
+             |         I. Souza, N. Marzari and D. Vanderbilt    |
+             |         Phys. Rev. B 65 035109 (2001)             |
+             |                                                   |
+             |                                                   |
+             | Copyright (c) 1996-2020                           |
+             |        The Wannier90 Developer Group and          |
+             |        individual contributors                    |
+             |                                                   |
+             |      Release: 3.1.0        5th March    2020      |
+             |                                                   |
+             | This program is free software; you can            |
+             | redistribute it and/or modify it under the terms  |
+             | of the GNU General Public License as published by |
+             | the Free Software Foundation; either version 2 of |
+             | the License, or (at your option) any later version|
+             |                                                   |
+             | This program is distributed in the hope that it   |
+             | will be useful, but WITHOUT ANY WARRANTY; without |
+             | even the implied warranty of MERCHANTABILITY or   |
+             | FITNESS FOR A PARTICULAR PURPOSE. See the GNU     |
+             | General Public License for more details.          |
+             |                                                   |
+             | You should have received a copy of the GNU General|
+             | Public License along with this program; if not,   |
+             | write to the Free Software Foundation, Inc.,      |
+             | 675 Mass Ave, Cambridge, MA 02139, USA.           |
+             |                                                   |
+             +---------------------------------------------------+
+             |    Execution started on 11Jul2025 at 20:42:25     |
+             +---------------------------------------------------+
+ 
+ ******************************************************************************
+ * -> Using CODATA 2006 constant values                                       *
+ *    (http://physics.nist.gov/cuu/Constants/index.html)                      *
+ * -> Using Bohr value from CODATA                                            *
+ ******************************************************************************
+ 
+
+ Running in serial (with serial executable)
+
+                                    ------
+                                    SYSTEM
+                                    ------
+
+                              Lattice Vectors (Ang)
+                    a_1     0.000000   2.276038   2.276038
+                    a_2     2.276038   0.000000   2.276038
+                    a_3     2.276038   2.276038   0.000000
+
+                   Unit Cell Volume:      23.58133  (Ang^3)
+
+                        Reciprocal-Space Vectors (Ang^-1)
+                    b_1    -1.380290   1.380290   1.380290
+                    b_2     1.380290  -1.380290   1.380290
+                    b_3     1.380290   1.380290  -1.380290
+  
+ *----------------------------------------------------------------------------*
+ |   Site       Fractional Coordinate          Cartesian Coordinate (Ang)     |
+ +----------------------------------------------------------------------------+
+ | Hg   1   0.00000   0.00000   0.00000   |    0.00000   0.00000   0.00000    |
+ *----------------------------------------------------------------------------*
+                                ------------
+                                K-POINT GRID
+                                ------------
+  
+             Grid size = 12 x 12 x 12      Total points = 1728
+  
+  
+ *---------------------------------- MAIN ------------------------------------*
+ |  Number of Wannier Functions               :                 4             |
+ |  Number of Objective Wannier Functions     :                 4             |
+ |  Number of input Bloch states              :                10             |
+ |  Output verbosity (1=low, 5=high)          :                 1             |
+ |  Timing Level (1=low, 5=high)              :                 1             |
+ |  Optimisation (0=memory, 3=speed)          :                 3             |
+ |  Length Unit                               :               Ang             |
+ |  Post-processing setup (write *.nnkp)      :                 F             |
+ |  Using Gamma-only branch of algorithms     :                 F             |
+ *----------------------------------------------------------------------------*
+ *------------------------------- WANNIERISE ---------------------------------*
+ |  Total number of iterations                :                 0             |
+ |  Number of CG steps before reset           :                 5             |
+ |  Trial step length for line search         :             2.000             |
+ |  Convergence tolerence                     :         0.100E-09             |
+ |  Convergence window                        :                -1             |
+ |  Iterations between writing output         :                 1             |
+ |  Iterations between backing up to disk     :               100             |
+ |  Write r^2_nm to file                      :                 F             |
+ |  Write xyz WF centres to file              :                 T             |
+ |  Write on-site energies <0n|H|0n> to file  :                 F             |
+ |  Use guiding centre to control phases      :                 F             |
+ |  Use phases for initial projections        :                 F             |
+ *----------------------------------------------------------------------------*
+ *------------------------------- DISENTANGLE --------------------------------*
+ |  Using band disentanglement                :                 T             |
+ |  Total number of iterations                :                 0             |
+ |  Mixing ratio                              :             0.500             |
+ |  Convergence tolerence                     :         1.000E-10             |
+ |  Convergence window                        :                 3             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.209 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.088 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Starting a new Wannier90 calculation ...
+
+
+ Reading overlaps from wannier90.mmn    : File generated by VASP: unknown system
+
+ Reading projections from wannier90.amn : File generated by VASP: unknown system
+
+ Time to read overlaps          1.345 (sec)
+
+ *------------------------------- DISENTANGLE --------------------------------*
+ +----------------------------------------------------------------------------+
+ |                              Energy  Windows                               |
+ |                              ---------------                               |
+ |                   Outer:  -10.00000  to   20.00000  (eV)                   |
+ |                   Inner:   -1.00000  to   12.00000  (eV)                   |
+ +----------------------------------------------------------------------------+
+   Number of target bands to extract:    4
+
+                   Unitarised projection of Wannier functions                  
+                   ------------------------------------------                  
+   A_mn = <psi_m|g_n> --> S = A.A^+ --> U = S^-1/2.A
+   In dis_project... done
+   Using an inner window (linner = T)
+   In dis_proj_froz... done
+
+                   Extraction of optimally-connected subspace                  
+                   ------------------------------------------                  
+ +---------------------------------------------------------------------+<-- DIS
+ |  Iter     Omega_I(i-1)      Omega_I(i)      Delta (frac.)    Time   |<-- DIS
+ +---------------------------------------------------------------------+<-- DIS
+
+     <<< Warning: Maximum number of disentanglement iterations reached >>>
+          <<< Disentanglement convergence criteria not satisfied >>>
+
+        Final Omega_I     0.00000000 (Ang^2)
+
+ +----------------------------------------------------------------------------+
+
+ Time to disentangle bands      0.087 (sec)
+
+ Writing checkpoint file wannier90.chk... done
+
+
+ *------------------------------- WANNIERISE ---------------------------------*
+ +--------------------------------------------------------------------+<-- CONV
+ | Iter  Delta Spread     RMS Gradient      Spread (Ang^2)      Time  |<-- CONV
+ +--------------------------------------------------------------------+<-- CONV
+
+ ------------------------------------------------------------------------------
+ Initial State
+  WF centre and spread    1  (  0.000000,  0.000000, -0.000000 )     3.88468723
+  WF centre and spread    2  (  0.000000,  0.000000, -0.000000 )     5.58457492
+  WF centre and spread    3  ( -0.000000, -0.000000,  0.000000 )     5.58457492
+  WF centre and spread    4  (  0.000000, -0.000000, -0.000000 )     5.58457492
+  Sum of centres and spreads (  0.000000,  0.000000, -0.000000 )    20.63841201
+
+      0     0.206E+02     0.0000000000       20.6384120056       0.00  <-- CONV
+        O_D=      0.0000000 O_OD=      4.3866889 O_TOT=     20.6384120 <-- SPRD
+ ------------------------------------------------------------------------------
+ Final State
+  WF centre and spread    1  (  0.000000,  0.000000, -0.000000 )     3.88468723
+  WF centre and spread    2  (  0.000000,  0.000000, -0.000000 )     5.58457492
+  WF centre and spread    3  ( -0.000000, -0.000000,  0.000000 )     5.58457492
+  WF centre and spread    4  (  0.000000, -0.000000, -0.000000 )     5.58457492
+  Sum of centres and spreads (  0.000000,  0.000000, -0.000000 )    20.63841201
+
+         Spreads (Ang^2)       Omega I      =    16.251723128
+        ================       Omega D      =     0.000000000
+                               Omega OD     =     4.386688878
+    Final Spread (Ang^2)       Omega Total  =    20.638412006
+ ------------------------------------------------------------------------------
+
+ Wannier centres written to file wannier90_centres.xyz
+ Time for wannierise            0.035 (sec)
+
+ Writing checkpoint file wannier90.chk... done
+
+ Time for plotting              0.000 (sec)
+ Total Execution Time           5.814 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.088|
+ |overlap: allocate                                 :         1         0.001|
+ |overlap: read                                     :         1         1.317|
+ |dis: main                                         :         1         0.087|
+ |wann: main                                        :         1         0.035|
+ |plot: main                                        :         1         0.000|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+
+             +---------------------------------------------------+
+             |                                                   |
+             |                   WANNIER90                       |
+             |                                                   |
+             +---------------------------------------------------+
+             |                                                   |
+             |        Welcome to the Maximally-Localized         |
+             |        Generalized Wannier Functions code         |
+             |            http://www.wannier.org                 |
+             |                                                   |
+             |                                                   |
+             |  Wannier90 Developer Group:                       |
+             |    Giovanni Pizzi    (EPFL)                       |
+             |    Valerio Vitale    (Cambridge)                  |
+             |    David Vanderbilt  (Rutgers University)         |
+             |    Nicola Marzari    (EPFL)                       |
+             |    Ivo Souza         (Universidad del Pais Vasco) |
+             |    Arash A. Mostofi  (Imperial College London)    |
+             |    Jonathan R. Yates (University of Oxford)       |
+             |                                                   |
+             |  For the full list of Wannier90 3.x authors,      |
+             |  please check the code documentation and the      |
+             |  README on the GitHub page of the code            |
+             |                                                   |
+             |                                                   |
+             |  Please cite                                      |
+             |                                                   |
+             |  [ref] "Wannier90 as a community code:            |
+             |        new features and applications",            |
+             |        G. Pizzi et al., J. Phys. Cond. Matt. 32,  |
+             |        165902 (2020).                             |
+             |        http://doi.org/10.1088/1361-648X/ab51ff    |
+             |                                                   |
+             |  in any publications arising from the use of      |
+             |  this code. For the method please cite            |
+             |                                                   |
+             |  [ref] "Maximally Localized Generalised Wannier   |
+             |         Functions for Composite Energy Bands"     |
+             |         N. Marzari and D. Vanderbilt              |
+             |         Phys. Rev. B 56 12847 (1997)              |
+             |                                                   |
+             |  [ref] "Maximally Localized Wannier Functions     |
+             |         for Entangled Energy Bands"               |
+             |         I. Souza, N. Marzari and D. Vanderbilt    |
+             |         Phys. Rev. B 65 035109 (2001)             |
+             |                                                   |
+             |                                                   |
+             | Copyright (c) 1996-2020                           |
+             |        The Wannier90 Developer Group and          |
+             |        individual contributors                    |
+             |                                                   |
+             |      Release: 3.1.0        5th March    2020      |
+             |                                                   |
+             | This program is free software; you can            |
+             | redistribute it and/or modify it under the terms  |
+             | of the GNU General Public License as published by |
+             | the Free Software Foundation; either version 2 of |
+             | the License, or (at your option) any later version|
+             |                                                   |
+             | This program is distributed in the hope that it   |
+             | will be useful, but WITHOUT ANY WARRANTY; without |
+             | even the implied warranty of MERCHANTABILITY or   |
+             | FITNESS FOR A PARTICULAR PURPOSE. See the GNU     |
+             | General Public License for more details.          |
+             |                                                   |
+             | You should have received a copy of the GNU General|
+             | Public License along with this program; if not,   |
+             | write to the Free Software Foundation, Inc.,      |
+             | 675 Mass Ave, Cambridge, MA 02139, USA.           |
+             |                                                   |
+             +---------------------------------------------------+
+             |    Execution started on 11Jul2025 at 20:42:32     |
+             +---------------------------------------------------+
+ 
+ ******************************************************************************
+ * -> Using CODATA 2006 constant values                                       *
+ *    (http://physics.nist.gov/cuu/Constants/index.html)                      *
+ * -> Using Bohr value from CODATA                                            *
+ ******************************************************************************
+ 
+
+ Running in serial (with serial executable)
+
+                                    ------
+                                    SYSTEM
+                                    ------
+
+                              Lattice Vectors (Ang)
+                    a_1     0.000000   2.276038   2.276038
+                    a_2     2.276038   0.000000   2.276038
+                    a_3     2.276038   2.276038   0.000000
+
+                   Unit Cell Volume:      23.58133  (Ang^3)
+
+                        Reciprocal-Space Vectors (Ang^-1)
+                    b_1    -1.380290   1.380290   1.380290
+                    b_2     1.380290  -1.380290   1.380290
+                    b_3     1.380290   1.380290  -1.380290
+  
+ *----------------------------------------------------------------------------*
+ |   Site       Fractional Coordinate          Cartesian Coordinate (Ang)     |
+ +----------------------------------------------------------------------------+
+ | Hg   1   0.00000   0.00000   0.00000   |    0.00000   0.00000   0.00000    |
+ *----------------------------------------------------------------------------*
+                                ------------
+                                K-POINT GRID
+                                ------------
+  
+             Grid size = 12 x 12 x 12      Total points = 1728
+  
+  
+ *---------------------------------- MAIN ------------------------------------*
+ |  Number of Wannier Functions               :                 4             |
+ |  Number of Objective Wannier Functions     :                 4             |
+ |  Number of input Bloch states              :                10             |
+ |  Output verbosity (1=low, 5=high)          :                 1             |
+ |  Timing Level (1=low, 5=high)              :                 1             |
+ |  Optimisation (0=memory, 3=speed)          :                 3             |
+ |  Length Unit                               :               Ang             |
+ |  Post-processing setup (write *.nnkp)      :                 F             |
+ |  Using Gamma-only branch of algorithms     :                 F             |
+ *----------------------------------------------------------------------------*
+ *------------------------------- WANNIERISE ---------------------------------*
+ |  Total number of iterations                :                 0             |
+ |  Number of CG steps before reset           :                 5             |
+ |  Trial step length for line search         :             2.000             |
+ |  Convergence tolerence                     :         0.100E-09             |
+ |  Convergence window                        :                -1             |
+ |  Iterations between writing output         :                 1             |
+ |  Iterations between backing up to disk     :               100             |
+ |  Write r^2_nm to file                      :                 F             |
+ |  Write xyz WF centres to file              :                 T             |
+ |  Write on-site energies <0n|H|0n> to file  :                 F             |
+ |  Use guiding centre to control phases      :                 F             |
+ |  Use phases for initial projections        :                 F             |
+ *----------------------------------------------------------------------------*
+ *------------------------------- DISENTANGLE --------------------------------*
+ |  Using band disentanglement                :                 T             |
+ |  Total number of iterations                :                 0             |
+ |  Mixing ratio                              :             0.500             |
+ |  Convergence tolerence                     :         1.000E-10             |
+ |  Convergence window                        :                 3             |
+ *----------------------------------------------------------------------------*
+ *-------------------------------- PLOTTING ----------------------------------*
+ |  Plotting interpolated bandstructure       :                 T             |
+ |   Number of K-path sections                :                10             |
+ |   Divisions along first K-path section     :                40             |
+ |   Output format                            :          gnuplot              |
+ |   Output mode                              :               s-k             |
+ *----------------------------------------------------------------------------*
+ |   K-space path sections:                                                   |
+ |    From: G       0.000  0.000  0.000     To: X       0.500  0.000  0.500   |
+ |    From: X       0.500  0.000  0.500     To: W       0.500  0.250  0.750   |
+ |    From: W       0.500  0.250  0.750     To: K       0.375  0.375  0.750   |
+ |    From: K       0.375  0.375  0.750     To: G       0.000  0.000  0.000   |
+ |    From: G       0.000  0.000  0.000     To: L       0.500  0.500  0.500   |
+ |    From: L       0.500  0.500  0.500     To: U       0.625  0.250  0.625   |
+ |    From: U       0.625  0.250  0.625     To: W       0.500  0.250  0.750   |
+ |    From: W       0.500  0.250  0.750     To: L       0.500  0.500  0.500   |
+ |    From: L       0.500  0.500  0.500     To: K       0.375  0.375  0.750   |
+ |    From: U       0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.137 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              3.990 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.180 (sec)
+
+ Time for plotting              2.015 (sec)
+ Total Execution Time           6.149 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         3.990|
+ |plot: main                                        :         1         2.015|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.170 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.051 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.185 (sec)
+
+ Time for plotting              2.158 (sec)
+ Total Execution Time           6.387 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.051|
+ |plot: main                                        :         1         2.158|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.173 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.052 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.180 (sec)
+
+ Time for plotting              2.020 (sec)
+ Total Execution Time           6.254 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.052|
+ |plot: main                                        :         1         2.020|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.195 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.075 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.180 (sec)
+
+ Time for plotting              2.047 (sec)
+ Total Execution Time           6.325 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.075|
+ |plot: main                                        :         1         2.047|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.198 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.074 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.181 (sec)
+
+ Time for plotting              2.054 (sec)
+ Total Execution Time           6.332 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.074|
+ |plot: main                                        :         1         2.054|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.198 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.081 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.186 (sec)
+
+ Time for plotting              2.139 (sec)
+ Total Execution Time           6.426 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.081|
+ |plot: main                                        :         1         2.139|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.198 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.083 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.183 (sec)
+
+ Time for plotting              2.049 (sec)
+ Total Execution Time           6.338 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.083|
+ |plot: main                                        :         1         2.049|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.208 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.091 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.185 (sec)
+
+ Time for plotting              2.048 (sec)
+ Total Execution Time           6.356 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.091|
+ |plot: main                                        :         1         2.048|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.208 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.079 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.181 (sec)
+
+ Time for plotting              2.049 (sec)
+ Total Execution Time           6.344 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.079|
+ |plot: main                                        :         1         2.049|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.208 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.073 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.179 (sec)
+
+ Time for plotting              2.052 (sec)
+ Total Execution Time           6.341 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.073|
+ |plot: main                                        :         1         2.052|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting
+      0.625  0.250  0.625     To: X       0.500  0.000  0.500   |
+ *----------------------------------------------------------------------------*
+ |  Plotting Hamiltonian in WF basis          :                 T             |
+ *----------------------------------------------------------------------------*
+ Time to read parameters        0.213 (sec)
+
+ *---------------------------------- K-MESH ----------------------------------*
+ +----------------------------------------------------------------------------+
+ |                    Distance to Nearest-Neighbour Shells                    |
+ |                    ------------------------------------                    |
+ |          Shell             Distance (Ang^-1)          Multiplicity         |
+ |          -----             -----------------          ------------         |
+ |             1                   0.199228                      8            |
+ |             2                   0.230048                      6            |
+ |             3                   0.325338                     12            |
+ |             4                   0.381492                     24            |
+ |             5                   0.398455                      8            |
+ |             6                   0.460097                      6            |
+ |             7                   0.501379                     24            |
+ |             8                   0.514404                     24            |
+ |             9                   0.563501                     24            |
+ |            10                   0.597683                     32            |
+ |            11                   0.650675                     12            |
+ |            12                   0.680492                     48            |
+ |            13                   0.690145                     30            |
+ |            14                   0.727477                     24            |
+ |            15                   0.754264                     24            |
+ |            16                   0.762984                     24            |
+ |            17                   0.796911                      8            |
+ |            18                   0.821437                     48            |
+ |            19                   0.829451                     24            |
+ |            20                   0.860762                     48            |
+ |            21                   0.883518                     72            |
+ |            22                   0.920194                      6            |
+ |            23                   0.941514                     24            |
+ |            24                   0.948514                     48            |
+ |            25                   0.976013                     36            |
+ |            26                   0.996139                     56            |
+ |            27                   1.002758                     24            |
+ |            28                   1.028808                     24            |
+ |            29                   1.047920                     72            |
+ |            30                   1.054214                     48            |
+ |            31                   1.079023                     24            |
+ |            32                   1.097261                     48            |
+ |            33                   1.127002                     24            |
+ |            34                   1.144476                     72            |
+ |            35                   1.150242                     30            |
+ |            36                   1.173021                     72            |
+ +----------------------------------------------------------------------------+
+ | The b-vectors are chosen automatically                                     |
+ | The following shells are used:   1                                         |
+ +----------------------------------------------------------------------------+
+ |                        Shell   # Nearest-Neighbours                        |
+ |                        -----   --------------------                        |
+ |                          1               8                                 |
+ +----------------------------------------------------------------------------+
+ | Completeness relation is fully satisfied [Eq. (B1), PRB 56, 12847 (1997)]  |
+ +----------------------------------------------------------------------------+
+ |                  b_k Vectors (Ang^-1) and Weights (Ang^2)                  |
+ |                  ----------------------------------------                  |
+ |            No.         b_k(x)      b_k(y)      b_k(z)        w_b           |
+ |            ---        --------------------------------     --------        |
+ |             1        -0.115024    0.115024    0.115024     9.447820        |
+ |             2         0.115024   -0.115024   -0.115024     9.447820        |
+ |             3         0.115024    0.115024    0.115024     9.447820        |
+ |             4        -0.115024   -0.115024   -0.115024     9.447820        |
+ |             5         0.115024   -0.115024    0.115024     9.447820        |
+ |             6         0.115024    0.115024   -0.115024     9.447820        |
+ |             7        -0.115024    0.115024   -0.115024     9.447820        |
+ |             8        -0.115024   -0.115024    0.115024     9.447820        |
+ +----------------------------------------------------------------------------+
+ |                           b_k Directions (Ang^-1)                          |
+ |                           -----------------------                          |
+ |            No.           x           y           z                         |
+ |            ---        --------------------------------                     |
+ |             1        -0.115024    0.115024    0.115024                     |
+ |             2         0.115024    0.115024    0.115024                     |
+ |             3         0.115024   -0.115024    0.115024                     |
+ |             4         0.115024    0.115024   -0.115024                     |
+ +----------------------------------------------------------------------------+
+  
+ Time to get kmesh              4.087 (sec)
+ *============================================================================*
+ |                              MEMORY ESTIMATE                               |
+ |         Maximum RAM allocated during each phase of the calculation         |
+ *============================================================================*
+ |                        Disentanglement           30.00 Mb                  |
+ |                            Wannierise:           12.39 Mb                  |
+ |                          plot_wannier:           12.39 Mb                  |
+ *----------------------------------------------------------------------------*
+  
+ Reading restart information from file wannier90.chk :
+ written on 11Jul2025 at 20:42:31 ... done
+
+ Restarting Wannier90 from plotting routines ...
+
+ *---------------------------------------------------------------------------*
+ |                               PLOTTING                                    |
+ *---------------------------------------------------------------------------*
+
+ !!!! Kpoint grid does not include Gamma.  Interpolation may be incorrect. !!!!
+
+ Calculating interpolated band-structure
+
+ Time to calculate interpolated band structure       1.180 (sec)
+
+ Time for plotting              2.042 (sec)
+ Total Execution Time           6.350 (sec)
+
+ *===========================================================================*
+ |                             TIMING INFORMATION                            |
+ *===========================================================================*
+ |    Tag                                                Ncalls      Time (s)|
+ |---------------------------------------------------------------------------|
+ |kmesh: get                                        :         1         4.087|
+ |plot: main                                        :         1         2.042|
+ *---------------------------------------------------------------------------*
+
+ All done: wannier90 exiting

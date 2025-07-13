@@ -3,6 +3,7 @@ from collections import defaultdict
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import numpy as np
 from scipy.optimize import curve_fit
+import logging
 
 # ### フィット関数の定義 ###
 def exp_decay(d: np.ndarray, c1: float, c: float) -> np.ndarray:
@@ -216,4 +217,48 @@ class FittingManager:
             func = InterpolationFunction(onsite_val, popt_real, popt_imag, fit_type, config)
             interpolated_functions[key] = func
             
+        return interpolated_functions
+
+    @classmethod
+    def create_interpolated_functions_from_raw(cls, hopping_dict: Dict[str, HoppingData], config: dict) -> Dict[str, Callable]:
+        """
+        [テスト用] グループ化されていない生のホッピングデータ(hopping_dict)から補間関数を生成する。
+        キーは ('Bi','s') -> ('Bi','pz') のようなタプルではなく、'Bi1,s -> Bi2,pz' のような文字列。
+        """
+        logging.info("Creating interpolation functions from raw (ungrouped) hopping data...")
+        fit_type = config["fit_type"]
+
+        # このメソッドは、fit_typeが 'linear', 'exp', 'gaussian' の場合を想定
+        if fit_type not in ['linear', 'exp', 'gaussian']:
+            raise NotImplementedError(f"Raw interpolation for fit_type '{fit_type}' is not implemented.")
+
+        interpolated_functions = {}
+        # キーが文字列である hopping_dict を直接ループ処理
+        for key, data in hopping_dict.items():
+            if not data:
+                continue
+            
+            # fit_typeに応じて適切な補間関数オブジェクトを生成
+            if fit_type == 'linear':
+                interpolated_functions[key] = LinearInterpolationFunction(data, config)
+            else: # exp, gaussian
+                # データ平滑化（同じ距離の値を平均）
+                dist_map = defaultdict(list)
+                for d, v in data:
+                    dist_map[round(d, 5)].append(v)
+                avg_data = {d: np.mean(v_list) for d, v_list in dist_map.items()}
+                
+                onsite_val = avg_data.get(0.0, 0.0)
+                d_fit_avg = np.array([d for d in sorted(avg_data.keys()) if not np.isclose(d, 0)])
+                v_fit_avg = np.array([avg_data[d] for d in d_fit_avg])
+
+                popt_real, popt_imag = None, None
+                if d_fit_avg.size >= 2:
+                    popt_real = cls.fit_data(d_fit_avg, v_fit_avg.real, fit_type)
+                    if not np.allclose(v_fit_avg.imag, 0):
+                        popt_imag = cls.fit_data(d_fit_avg, v_fit_avg.imag, fit_type)
+                
+                func = InterpolationFunction(onsite_val, popt_real, popt_imag, fit_type, config)
+                interpolated_functions[key] = func
+        
         return interpolated_functions
