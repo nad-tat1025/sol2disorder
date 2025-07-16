@@ -1,0 +1,19 @@
+# === Core Dependencies ===
+# Scientific computing and data manipulation
+numpy
+scipy
+pandas
+
+# Tight-binding model handling
+tbmodels
+
+# Data serialization (for config files)
+pyyaml
+
+# Plotting and visualization
+matplotlib
+
+# === Development and Testing Dependencies ===
+# Testing framework
+pytest
+pytest-mock
