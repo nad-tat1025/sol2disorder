@@ -41,14 +41,39 @@
 **`configs/config.yaml` の例:**
 
 ```yaml
-model_path: ./data/Bi/wannier90_hr.dat
-wannier_win_path: ./data/Bi/wannier90.win
-position_units: fractional
-spin: False
-cutoff_radius: 6.0
-fitting:
-  function: exp_decay
-  params: [1.0, 1.0]
+# --- ソースモデル情報 ---
+source_structure_file: "./data/input/Bi/PBE/spinless/POSCAR"
+source_hr_file: "./data/input/Bi/PBE/spinless/wannier90_hr.dat"
+source_win_file: "./data/input/Bi/PBE/spinless/wannier90.win" 
+
+# --- ターゲット構造情報 ---
+target_structure_file: null
+target_projection: null
+output_hr_file: "./data/output/Bi/PBE/spinless/mapped_hr.dat"
+
+# --- 一般設定 ---
+spin: false
+fermi_energy: 2.9478
+
+# --- 解析オプション ---
+distance_threshold: 1.0e-9
+zero_hop_threshold: 1.0e-9
+hopping_cutoff_distance: 6.5
+use_hermitian_symmetrization: true
+use_symmetry_averaging: false
+fit_type: "linear" # "exp", "gaussian", "linear"
+
+# --- 方向依存性オプション ---
+# use_auto_direction_clusters: true
+# max_direction_clusters: 8
+
+# --- 検証オプション ---
+run_plotting: true
+run_validation: true
+compare_parameters: true
+
+# --- デバッグ用オプション
+use_ungrouped_interpolation: true
 ```
 
 ### 2. 解析の実行
@@ -67,15 +92,16 @@ python main.py --config_path ./configs/config.yaml
 
 ```
 .
-├── configs/          # 解析設定ファイル
-├── data/             # 入力データ (wannier90_hr.datなど)
-├── outputs/          # 解析結果の出力先
-├── src/              # ソースコード
-│   ├── core/         # 中核モジュール (analyzer, fitting, mapper)
-│   └── utils/        # 補助モジュール (I/O, プロット)
-├── tests/            # テストコード
-├── main.py           # メインスクリプト
-└── requirements.txt  # 依存ライブラリ
+├── configs/
+├── data/
+│   ├── input/
+│   └── output/
+├── src/              
+│   ├── core/         
+│   └── utils/        
+├── tests/            
+├── main.py           
+└── requirements.txt  
 ```
 
 ---
