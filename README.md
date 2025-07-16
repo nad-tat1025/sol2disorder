@@ -114,8 +114,3 @@ python main.py --config_path ./configs/config.yaml
 pytest
 ```
 
----
-
-## ライセンス
-
-このプロジェクトはMITライセンスの下で公開されています。
