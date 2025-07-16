@@ -20,7 +20,7 @@
 
 1.  **リポジトリのクローン**
     ```bash
-    git clone [https://github.com/nad-tat1025/sol2disorder.git](https://github.com/nad-tat1025/sol2disorder.git)
+    git clone https://github.com/nad-tat1025/sol2disorder.git
     cd sol2disorder
     ```
 
