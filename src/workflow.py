@@ -233,30 +233,35 @@ def run_workflow(config: dict):
 
 
     # ▼▼▼ ここからが修正箇所です ▼▼▼
-    logging.info(f"Step 2: Fitting data with '{config['fit_type']}' model...")
+    # --- Step 2: データの後処理と補間関数の作成 ---
+    logging.info("Step 2: Post-processing data and creating interpolation functions...")
 
     use_ungrouped_interpolation = config.get("use_ungrouped_interpolation", False)
+    
     if use_ungrouped_interpolation:
-        # [テスト用] グループ化・平均化を行わず、生のデータで補間する
-        logging.warning("TEST MODE: Bypassing grouping/averaging. Interpolating from raw hopping data.")
+        # [テスト用] グループ化を行わず、生のデータで補間
+        logging.warning("TEST MODE: Bypassing grouping. Interpolating from raw hopping data.")
+        data_for_interpolation = hopping_dict
+        interpolated_functions = FittingManager.create_interpolated_functions_from_raw(data_for_interpolation, config)
         
-        # ungroupedデータ用の補間関数生成ロジック
-        interpolated_functions = FittingManager.create_interpolated_functions_from_raw(hopping_dict, config)
-
         if config.get("run_plotting", True):
-            plot_ungrouped_hopping_with_fit(hopping_dict, interpolated_functions, config)
+            plot_ungrouped_hopping_with_fit(data_for_interpolation, interpolated_functions, config)
 
     else:
-        # [通常処理] グループ化、平均化を行ってから補間する
+        # [通常処理] グループ化と平均化を行う
+        logging.info("Grouping hoppings by orbital type.")
         grouped_data = analyzer_source.group_hoppings_by_type(hopping_dict)
-        if config.get("use_symmetry_averaging", False):
-            grouped_data = analyzer_source.average_symmetric_hoppings(grouped_data)
-        print_hopping_summary(grouped_data)
         
-        interpolated_functions = FittingManager.create_interpolated_functions(grouped_data, config)
+        data_for_interpolation = grouped_data
+        if config.get("use_symmetry_averaging", False):
+            logging.info("Averaging symmetric hoppings (e.g., px <-> py).")
+            data_for_interpolation = analyzer_source.average_symmetric_hoppings(grouped_data)
+
+        print_hopping_summary(data_for_interpolation)
+        interpolated_functions = FittingManager.create_interpolated_functions(data_for_interpolation, config)
         
         if config.get("run_plotting", True):
-            plot_hopping_with_fit(grouped_data, interpolated_functions)
+            plot_hopping_with_fit(data_for_interpolation, interpolated_functions)
 
     # --- Step 3: ターゲットハミルトニアンの再構築 ---
     logging.info("Step 3: Reconstructing Hamiltonian for the target structure...")

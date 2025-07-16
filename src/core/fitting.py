@@ -262,3 +262,4 @@ class FittingManager:
                 interpolated_functions[key] = func
         
         return interpolated_functions
+    
