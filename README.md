@@ -2,7 +2,6 @@
 
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![testing: pytest](https://img.shields.io/badge/testing-pytest-blueviolet.svg)](https://pytest.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 第一原理計算から得られるタイトバインディングモデルを基に、結晶中の乱れを考慮したハミルトニアンを構築・解析するPythonツールキット。
 
@@ -12,7 +11,7 @@
 
 * **Wannier90モデルの解析**: `wannier90_hr.dat`と`wannier90.win`を読み込み、ホッピング、サイト、軌道の情報を抽出します。
 * **ホッピングの距離依存性の解析**: 原子ペア（原子種・軌道）ごとにホッピングパラメータを距離の関数として評価し、フィッティングします。
-* **乱れた系のハミルトニアン構築**: フィッティングした関数に基づき、原子変位や置換を含む系のハミルトニアンを再構築します。
+* **乱れた系のハミルトニアン構築**: フィッティングした関数に基づき、アモルファスや液相のハミルトニアンを再構築します。
 * **YAMLによる設定管理**: 解析条件はすべて設定ファイルで管理し、コードの再利用性と可読性を高めます。
 
 ---
