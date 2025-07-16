@@ -39,9 +39,8 @@ source_structure_file: "./data/input/Bi/PBE/spinless/POSCAR"
 source_hr_file: "./data/input/Bi/PBE/spinless/wannier90_hr.dat"
 source_win_file: "./data/input/Bi/PBE/spinless/wannier90.win" 
 
-# --- ターゲット構造情報 ---
-target_structure_file: null
-target_projection: null
+# --- ターゲットモデル情報 ---
+target_structure_file: "./data/output/Bi/PBE/spinless/POSCAR"    # ソースモデルをターゲットにする場合はnullで良い
 output_hr_file: "./data/output/Bi/PBE/spinless/mapped_hr.dat"
 
 # --- 一般設定 ---
@@ -54,7 +53,7 @@ zero_hop_threshold: 1.0e-9
 hopping_cutoff_distance: 6.5
 use_hermitian_symmetrization: true
 use_symmetry_averaging: false
-fit_type: "linear" # "exp", "gaussian", "linear"
+fit_type: "linear"    # Options"exp", "gaussian", "linear"
 
 # --- 方向依存性オプション ---
 # use_auto_direction_clusters: true
@@ -94,12 +93,3 @@ python main.py --config_path ./configs/config.yaml
 ├── main.py           
 └── requirements.txt  
 ```
-
-## テスト
-
-`pytest`による単体・結合テストを整備しています。以下のコマンドで実行できます。
-
-```bash
-pytest
-```
-
