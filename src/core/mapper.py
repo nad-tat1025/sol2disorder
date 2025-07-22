@@ -14,42 +14,72 @@ class HamiltonianMapper:
         self.analyzer = analyzer
         self.config = config
 
+    # def construct_hermitian_hops(self, bravais_vectors: List[BravaisVector]) -> Dict[BravaisVector, np.ndarray]:
+    #     """
+    #     ホッピング行列の辞書を構築する。
+    #     ループ構造を統一し、use_hermitian_symmetrizationフラグは計算方法の切り替えにのみ使用する。
+    #     """
+    #     final_hop = {}
+    #     processed_R = set()
+    #     symmetrize = self.config.get("use_hermitian_symmetrization", True)
+
+    #     for R_tuple in bravais_vectors:
+    #         if R_tuple in processed_R:
+    #             continue
+
+    #         # H(R)を計算
+    #         H_R = self._construct_global_block(np.array(R_tuple))
+    #         final_hop[R_tuple] = H_R
+
+    #         minus_R_tuple = tuple(-r for r in R_tuple)
+    #         if R_tuple != minus_R_tuple:
+    #             if symmetrize:
+    #                 # trueの場合: H(-R) = H(R)† を適用して対称性を保証
+    #                 final_hop[minus_R_tuple] = H_R.T.conj()
+    #             else:
+    #                 # falseの場合: H(-R)も独立して計算する
+    #                 H_minus_R = self._construct_global_block(np.array(minus_R_tuple))
+    #                 final_hop[minus_R_tuple] = H_minus_R
+            
+    #         processed_R.add(R_tuple)
+    #         processed_R.add(minus_R_tuple)
+        
+    #     # オンサイト項がエルミートになるように保証 (どちらのケースでも実行)
+    #     if (0, 0, 0) in final_hop:
+    #         H_0 = final_hop[(0, 0, 0)]
+    #         final_hop[(0, 0, 0)] = (H_0 + H_0.T.conj()) / 2.0
+            
+    #     return final_hop
+
     def construct_hermitian_hops(self, bravais_vectors: List[BravaisVector]) -> Dict[BravaisVector, np.ndarray]:
         """
         ホッピング行列の辞書を構築する。
-        ループ構造を統一し、use_hermitian_symmetrizationフラグは計算方法の切り替えにのみ使用する。
         """
-        final_hop = {}
+        symm_hop = {}
         processed_R = set()
-        symmetrize = self.config.get("use_hermitian_symmetrization", True)
-
+        
         for R_tuple in bravais_vectors:
-            if R_tuple in processed_R:
-                continue
-
-            # H(R)を計算
-            H_R = self._construct_global_block(np.array(R_tuple))
-            final_hop[R_tuple] = H_R
-
-            minus_R_tuple = tuple(-r for r in R_tuple)
-            if R_tuple != minus_R_tuple:
-                if symmetrize:
-                    # trueの場合: H(-R) = H(R)† を適用して対称性を保証
-                    final_hop[minus_R_tuple] = H_R.T.conj()
-                else:
-                    # falseの場合: H(-R)も独立して計算する
-                    H_minus_R = self._construct_global_block(np.array(minus_R_tuple))
-                    final_hop[minus_R_tuple] = H_minus_R
+            if R_tuple in processed_R: continue
+            
+            if R_tuple == (0, 0, 0):
+                H_0 = self._construct_global_block(np.array(R_tuple))
+                symm_hop[(0, 0, 0)] = (H_0 + H_0.T.conj()) / 2.0
+            
+            else:
+                H_R = self._construct_global_block(np.array(R_tuple))
+                minus_R_tuple = tuple(-r for r in R_tuple)
+                
+                H_minus_R_dagger = self._construct_global_block(-np.array(R_tuple)).T.conj()
+                
+                symm_hop[R_tuple] = (H_R + H_minus_R_dagger) / 2.0
+                # symm_hop[R_tuple] = H_R
+                if R_tuple != minus_R_tuple:
+                    symm_hop[minus_R_tuple] = symm_hop[R_tuple].T.conj()
             
             processed_R.add(R_tuple)
             processed_R.add(minus_R_tuple)
-        
-        # オンサイト項がエルミートになるように保証 (どちらのケースでも実行)
-        if (0, 0, 0) in final_hop:
-            H_0 = final_hop[(0, 0, 0)]
-            final_hop[(0, 0, 0)] = (H_0 + H_0.T.conj()) / 2.0
             
-        return final_hop
+        return symm_hop
 
     def _construct_global_block(self, R: np.ndarray) -> np.ndarray:
         """指定されたブラベーベクトルRに対する完全なハミルトニアンブロックを構築する。"""

@@ -6,6 +6,7 @@ pandas
 
 # Tight-binding model handling
 tbmodels
+ase
 
 # Data serialization (for config files)
 pyyaml
@@ -17,3 +18,4 @@ matplotlib
 # Testing framework
 pytest
 pytest-mock
+

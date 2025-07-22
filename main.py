@@ -4,6 +4,8 @@ import sys
 import yaml
 from src.workflow import run_workflow
 
+# sample: python3 main.py --config configs/Bi_PBE_spinless.yaml  
+
 def main():
     parser = argparse.ArgumentParser(description="Map tight-binding parameters.")
     parser.add_argument('-c', '--config', type=str, required=True, help='Path to the configuration file (YAML).')

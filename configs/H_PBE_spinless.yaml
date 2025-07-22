@@ -1,16 +1,16 @@
 # --- ソースモデル情報 ---
-source_structure_file: "./data/input/Hg/spinless/POSCAR"
-source_hr_file: "./data/input/Hg/spinless/wannier90_hr.dat"
-source_win_file: "./data/input/Hg/spinless/wannier90.win" 
+source_structure_file: "./data/input/H/POSCAR"
+source_hr_file: "./data/input/H/wannier90_hr.dat"
+source_win_file: "./data/input/H/wannier90.win" 
 
 # --- ターゲット構造情報 ---
 target_structure_file: null
 target_projection: null
-output_hr_file: "./data/output/Hg/spinless/mapped_hr.dat"
+output_hr_file: "./data/output/H/mapped_hr.dat"
 
 # --- 一般設定 ---
 spin: false
-fermi_energy: 2.9351
+fermi_energy: -3.7191
 
 # --- 解析オプション ---
 distance_threshold: 1.0e-9

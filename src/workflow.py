@@ -201,7 +201,7 @@ def run_workflow(config: dict):
         source_model = tb.Model.from_wannier_files(
             hr_file=config["source_hr_file"],
             uc=source_geometry['uc'],
-            contains_cc=True,
+            contains_cc=False,
         )
         logging.info("Source TB-model loaded successfully.")
     except Exception as e:
@@ -214,7 +214,8 @@ def run_workflow(config: dict):
         onsite_key = (0, 0, 0)
         if onsite_key in source_model.hop:
             h_onsite = source_model.hop[onsite_key]
-            h_onsite -= fermi_energy / 2 * np.eye(h_onsite.shape[0], dtype=complex)
+            # h_onsite -= fermi_energy / 2 * np.eye(h_onsite.shape[0], dtype=complex)
+            h_onsite -= fermi_energy * np.eye(h_onsite.shape[0], dtype=complex)
             logging.info("On-site energies have been shifted successfully.")
         else:
             logging.warning("On-site Hamiltonian H(R=0) not found. Cannot shift by Fermi energy.")
@@ -276,16 +277,28 @@ def run_workflow(config: dict):
         model=source_model # mapperがソースのucや座標を参照できるよう、source_modelを渡す
     )
     mapper = HamiltonianMapper(interpolated_functions, analyzer_target, config)
-    bravais_vectors_list = list(source_model.hop.keys())
+    # bravais_vectors_list = list(source_model.hop.keys())
+    
+    hop_keys = source_model.hop.keys()
+    bravais_vectors_list = []
+    processed_inverse_vectors = set()
+
+    for R in hop_keys:
+        if R in processed_inverse_vectors:
+            continue
+        bravais_vectors_list.append(R)
+
+        R_inv = tuple(-x for x in R)
+        if R != R_inv:
+            processed_inverse_vectors.add(R_inv)
+
     H_mapped = mapper.construct_hermitian_hops(bravais_vectors_list)
     
     # --- Step 4: 新しいモデルの作成と出力、検証 ---
     try:
         mapped_model = tb.Model(
-            # pos=target_geometry["positions"], # ターゲットの座標を使用
             uc=target_geometry["uc"],
             hop=H_mapped,
-            # size=analyzer_source.size, # サイズはソースモデルと一致させる
             contains_cc=False,
         )
         logging.info("Mapped TB-model constructed successfully.")
