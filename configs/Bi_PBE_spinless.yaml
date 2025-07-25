@@ -15,14 +15,10 @@ fermi_energy: 2.9478
 # --- 解析オプション ---
 distance_threshold: 1.0e-9
 zero_hop_threshold: 1.0e-9
-hopping_cutoff_distance: 6.5
+hopping_cutoff_distance: 6.0
 use_hermitian_symmetrization: true
-use_symmetry_averaging: false
+use_symmetry_averaging: true
 fit_type: "linear" # "exp", "gaussian", "linear"
-
-# --- 方向依存性オプション ---
-# use_auto_direction_clusters: true
-# max_direction_clusters: 8
 
 # --- 検証オプション ---
 run_plotting: true
@@ -30,4 +26,4 @@ run_validation: true
 compare_parameters: true
 
 # --- デバッグ用オプション
-use_ungrouped_interpolation: true
+use_ungrouped_interpolation: false

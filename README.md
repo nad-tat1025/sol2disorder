@@ -34,13 +34,14 @@
 
 ```yaml
 # --- ソースモデル情報 ---
-source_structure_file: "./data/input/Bi/PBE/spinless/POSCAR"
-source_hr_file: "./data/input/Bi/PBE/spinless/wannier90_hr.dat"
-source_win_file: "./data/input/Bi/PBE/spinless/wannier90.win" 
+source_structure_file: "./data/input/POSCAR_source"
+source_hr_file: "./data/input/wannier90_hr.dat"
+source_win_file: "./data/input/wannier90.win" 
 
 # --- ターゲットモデル情報 ---
-target_structure_file: "./data/output/Bi/PBE/spinless/POSCAR"    # ソースモデルをターゲットにする場合はnullで良い
-output_hr_file: "./data/output/Bi/PBE/spinless/mapped_hr.dat"
+target_structure_file: "./data/output/POSCAR_target"
+# target_structure_file: null   (target_structure = source_structure の場合)
+output_hr_file: "./data/output/mapped_hr.dat"
 
 # --- 一般設定 ---
 spin: false
@@ -49,22 +50,16 @@ fermi_energy: 2.9478
 # --- 解析オプション ---
 distance_threshold: 1.0e-9
 zero_hop_threshold: 1.0e-9
-hopping_cutoff_distance: 6.5
+hopping_cutoff_distance: 7.0
 use_hermitian_symmetrization: true
-use_symmetry_averaging: false
+use_symmetry_averaging: true
 fit_type: "linear"    # Options"exp", "gaussian", "linear"
-
-# --- 方向依存性オプション ---
-# use_auto_direction_clusters: true
-# max_direction_clusters: 8
 
 # --- 検証オプション ---
 run_plotting: true
 run_validation: true
 compare_parameters: true
 
-# --- デバッグ用オプション
-use_ungrouped_interpolation: true
 ```
 
 ### 2. 解析の実行

@@ -61,24 +61,15 @@ class HamiltonianMapper:
         for R_tuple in bravais_vectors:
             if R_tuple in processed_R: continue
             
-            if R_tuple == (0, 0, 0):
-                H_0 = self._construct_global_block(np.array(R_tuple))
-                symm_hop[(0, 0, 0)] = (H_0 + H_0.T.conj()) / 2.0
+            H_R = self._construct_global_block(np.array(R_tuple)).T.conj()
+            symm_hop[R_tuple] = H_R
             
-            else:
-                H_R = self._construct_global_block(np.array(R_tuple))
-                minus_R_tuple = tuple(-r for r in R_tuple)
-                
-                H_minus_R_dagger = self._construct_global_block(-np.array(R_tuple)).T.conj()
-                
-                symm_hop[R_tuple] = (H_R + H_minus_R_dagger) / 2.0
-                # symm_hop[R_tuple] = H_R
-                if R_tuple != minus_R_tuple:
-                    symm_hop[minus_R_tuple] = symm_hop[R_tuple].T.conj()
+            minus_R_tuple = tuple(-r for r in R_tuple)
+            # H_minus_R = self._construct_global_block(-np.array(R_tuple)).T.conj()
+            # symm_hop[R_tuple] = (H_R + H_minus_R) / 2
             
             processed_R.add(R_tuple)
             processed_R.add(minus_R_tuple)
-            
         return symm_hop
 
     def _construct_global_block(self, R: np.ndarray) -> np.ndarray:
@@ -138,7 +129,6 @@ class HamiltonianMapper:
         for m, label_m in enumerate(labels_i):
             for n, label_n in enumerate(labels_j):
                 
-                # ▼▼▼ フラグに応じてキーを生成 ▼▼▼
                 if use_ungrouped:
                     # trueの場合: 'Bi1,s -> Bi2,pz' のような生の文字列キー
                     func_key = f"{label_m} -> {label_n}"
@@ -147,8 +137,7 @@ class HamiltonianMapper:
                     simp_i = self.analyzer._simplify_label(label_m, self.config['spin'])
                     simp_j = self.analyzer._simplify_label(label_n, self.config['spin'])
                     func_key = (simp_i, simp_j)
-                # ▲▲▲ 修正箇所 ▲▲▲
-
+                    
                 func = self.interpolated_functions.get(func_key)
                 if func:
                     H_ij_local[m, n] = func(dist)

@@ -288,16 +288,16 @@ def plot_ungrouped_hopping_with_fit(hopping_dict: Dict[str, HoppingData],
         return
 
     # プロット数が非常に多くなる可能性があるため、一部を抜粋するか、警告を出す
-    MAX_PLOTS = 36 # プロットするグラフの最大数
-    if n_plots > MAX_PLOTS:
-        logging.warning(f"Too many hopping pairs to plot ({n_plots}). Plotting the first {MAX_PLOTS}.")
-        keys_to_plot = keys_to_plot[:MAX_PLOTS]
-        n_plots = MAX_PLOTS
+    # MAX_PLOTS = 100 # プロットするグラフの最大数
+    # if n_plots > MAX_PLOTS:
+    #     logging.warning(f"Too many hopping pairs to plot ({n_plots}). Plotting the first {MAX_PLOTS}.")
+    #     keys_to_plot = keys_to_plot[:MAX_PLOTS]
+    #     n_plots = MAX_PLOTS
 
     ncols = int(ceil(sqrt(n_plots)))
     nrows = int(ceil(n_plots / ncols))
     
-    figsize = (4.0 * ncols, 3.0 * nrows)
+    figsize = (3.0 * ncols, 3.0 * nrows)
     fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize, sharex=True, sharey=True)
     axes = np.atleast_1d(axes).flatten()
 

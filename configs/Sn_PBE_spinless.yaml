@@ -26,4 +26,4 @@ run_validation: true
 compare_parameters: true
 
 # --- デバッグ用オプション
-use_ungrouped_interpolation: true
+use_ungrouped_interpolation: false

@@ -109,48 +109,16 @@ class HoppingAnalyzer:
         for R_tuple in list(self.model.hop.keys()):
             if R_tuple in processed_R: continue
             
-            if R_tuple == (0, 0, 0):
-                H_0 = self.model.hop[R_tuple]
-                symm_hop[(0, 0, 0)] = (H_0 + H_0.T.conj()) / 2.0
-            
-            else:
-                H_R = self.model.hop[R_tuple]
-                minus_R_tuple = tuple(-r for r in R_tuple)
-                
-                H_minus_R_dagger = self.model.hop.get(minus_R_tuple, H_R).T.conj()
-                
-                symm_hop[R_tuple] = (H_R + H_minus_R_dagger) / 2.0
-                # symm_hop[R_tuple] = H_R
-                if R_tuple != minus_R_tuple:
-                    symm_hop[minus_R_tuple] = symm_hop[R_tuple].T.conj()
-                            
+            H_R = self.model.hop[R_tuple].T.conj()
+            symm_hop[R_tuple] = H_R
+
+            minus_R_tuple = tuple(-r for r in R_tuple)
+            # H_minus_R_dagger = self.model.hop.get(minus_R_tuple, H_R).T.conj()
+            # symm_hop[R_tuple] = (H_R + H_minus_R_dagger) / 2
+
             processed_R.add(R_tuple)
             processed_R.add(minus_R_tuple)
-            
         return symm_hop
-
-    # def _symmetrize_hoppings(self) -> Dict[BravaisVector, np.ndarray]: # TEST
-    #     """
-    #     ハミルトニアンのエルミート対称性を保証する。
-    #     -Rベクトルが存在しない場合のみ、H(-R) = H(R)† として補完する。
-    #     既存のデータは変更しない。
-    #     """
-    #     # 元のホッピング辞書のコピーから始める
-    #     symm_hop = self.model.hop.copy()
-        
-    #     # model.hop.keys()をリストに変換してイテレートし、辞書への追加によるエラーを防ぐ
-    #     for R_tuple in list(self.model.hop.keys()):
-    #         minus_R_tuple = tuple(-r for r in R_tuple)
-            
-    #         # -Rに対応するホッピングが辞書に存在しない場合のみ処理
-    #         if minus_R_tuple not in symm_hop:
-    #             # H(R)を取得
-    #             H_R = symm_hop[R_tuple]
-    #             # H(-R) = H(R)† として新しいエントリを追加
-    #             symm_hop[minus_R_tuple] = H_R.T.conj()
-    #             logging.debug(f"Symmetrizing: Added H({minus_R_tuple}) from H({R_tuple})†")
-
-    #     return symm_hop
 
     def extract_and_rotate_hoppings(self) -> Dict[str, HoppingData]:
         """ホッピングを抽出し、サイト間ベクトルに沿って回転させ、局所座標系に変換する。"""
