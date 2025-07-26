@@ -110,12 +110,12 @@ class HoppingAnalyzer:
             if R_tuple in processed_R: continue
             
             H_R = self.model.hop[R_tuple]
-            symm_hop[R_tuple] = H_R
+            if self.config.get("transpose_hamiltonian", True):
+                symm_hop[R_tuple] = H_R.T
+            else:
+                symm_hop[R_tuple] = H_R
 
             minus_R_tuple = tuple(-r for r in R_tuple)
-            # H_minus_R_dagger = self.model.hop.get(minus_R_tuple, H_R).T.conj()
-            # symm_hop[R_tuple] = (H_R + H_minus_R_dagger) / 2
-
             processed_R.add(R_tuple)
             processed_R.add(minus_R_tuple)
         return symm_hop

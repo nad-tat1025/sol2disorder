@@ -23,7 +23,8 @@ fit_type: "linear" # "exp", "gaussian", "linear"
 # --- 検証オプション ---
 run_plotting: true
 run_validation: true
-compare_parameters: false
+compare_parameters: true
 
 # --- デバッグ用オプション
-use_ungrouped_interpolation: false
+use_ungrouped_interpolation: true
+transpose_hamiltonian: true
