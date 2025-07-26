@@ -61,7 +61,7 @@ class HamiltonianMapper:
         for R_tuple in bravais_vectors:
             if R_tuple in processed_R: continue
             
-            H_R = self._construct_global_block(np.array(R_tuple)).T.conj()
+            H_R = self._construct_global_block(np.array(R_tuple))
             symm_hop[R_tuple] = H_R
             
             minus_R_tuple = tuple(-r for r in R_tuple)

@@ -109,7 +109,7 @@ class HoppingAnalyzer:
         for R_tuple in list(self.model.hop.keys()):
             if R_tuple in processed_R: continue
             
-            H_R = self.model.hop[R_tuple].T.conj()
+            H_R = self.model.hop[R_tuple]
             symm_hop[R_tuple] = H_R
 
             minus_R_tuple = tuple(-r for r in R_tuple)
